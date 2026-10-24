@@ -9,17 +9,17 @@ In einem Netz von Subunternehmern und Lieferanten breitet sich ein Befall über 
 
 ## Kernfrage
 
-**Wie viel Wissen über das Netz braucht eine Impfstrategie, und wo lohnt es sich?** Der Gesamtplan nannte als Risiko „die Gradregel gewinnt überall“. Die Vormessung schärfte das auf den Hook, der in der Demo steht: **in Netzen mit stark schwankendem Grad lohnt Wissen enorm, und Nachbarwissen reicht fast; in homogenen Netzen (Ring, Gitter) bringt Wissen wenig, und die Betweenness kann sogar schlechter sein als Zufall.**
+**Wie viel Wissen über das Netz braucht eine Impfstrategie, und wo lohnt es sich?** Der Gesamtplan nannte als Risiko „die Gradregel gewinnt überall“. Die Vormessung schärfte das auf den Hook, der in der Demo steht: **in Netzen mit stark schwankendem Grad lohnt Wissen enorm, und Nachbarwissen reicht fast; im Gitter bringt Wissen wenig (im Ring noch etwa den Faktor 2), und die Betweenness kann sogar schlechter sein als Zufall.**
 
 ## Befunde und Korrekturen gegenüber dem Plan
 
-- **Wissen lohnt nur in heterogenen Netzen:** bei 10 % Impfanteil bleiben in den beiden Netzen mit schwankendem Grad (Potenzgesetz, skalenfrei) 0,7 % bzw. 1,1 % Ausbruchsgröße mit der Gradregel, mit Zufall 22,5 % bzw. 20,8 %; im Gitter 10,3 % gegen 12,3 %.
+- **Wissen lohnt am stärksten in Netzen mit stark schwankendem Grad (Faktor 20 bis 30):** bei 10 % Impfanteil und 30 % Ausbreitungsstärke bleiben in den beiden Netzen mit schwankendem Grad (Potenzgesetz, skalenfrei) 0,7 % bzw. 1,1 % Ausbruchsgröße mit der Gradregel, mit Zufall 22,5 % bzw. 20,8 %. Im Zufallsnetz (15,9 auf 5,6 %), in Verbünden (15,4 auf 5,2 %) und im Ring (12,2 auf 6,2 %) halbiert bis drittelt die Gradregel die Ausbruchsgröße; im Gitter bringt sie kaum etwas (10,3 % gegen 12,3 %).
 - **Die Bekannten-Impfung (zufälliger Partner eines Zufallsbetriebs) kommt nicht nahe an die Gradregel** (anders als die Plan-Vermutung nach Cohen u. a.): im skalenfreien Netz 8,1 % gegen 20,8 % (Zufall) und 1,1 % (Grad), sie schließt 64 % der Lücke; im Zufallsnetz nur 22 %. **Wählt man unter den Partnern den mit den meisten Partnern** (Variante nach Holme 2004 und Gallos u. a. 2007), sind es 97 % bzw. 86 % der Lücke.
 - **Die Gradregel gewinnt nicht überall gleich:** im Gitter wird sie nur wenig besser als Zufall, und die **Betweenness ist dort schlechter als Zufall** (15,0 % gegen 12,3 % bei 10 % Impfanteil, bei *n* = 250 in allen acht Netzen; bei *n* = 150 ist der Unterschied nicht systematisch).
 - **Die Kernzahl (Stück 1) ist als Impfregel in skalenfreien Netzen so schwach wie Zufall** (20,1 % gegen 20,8 %), im Potenzgesetz-Netz brauchbar (1,1 %).
-- **Die adaptive Gradregel hilft vor allem im Ring und im Gitter** (Ring 5,1 % gegen 6,2 %, Gitter 9,1 % gegen 10,3 %), kaum in Netzen mit schwankendem Grad.
-- **Die Ausbruchsgröße fällt nicht immer mit jeder Impfung** (Korrektur am Plan, der „Impfen schadet nie“ als Eigenschaft vorsah): der Befall beginnt in einem zufälligen **Ungeimpften**; wer einen isolierten Betrieb sichert, ändert die Summe der quadrierten Komponentengrößen, aber nicht die Zahl der Ungeimpften im Nenner. Die Summe selbst fällt immer.
-- **Greedy nur exakt und klein:** auf Netzen mit 9 Betrieben liegt Greedy beim Optimum (Optimum in 9 bzw. 8 von 10 Netzen), die Gradregel 1,5 % bzw. 9,1 % darüber (Median); live ist Greedy zu teuer.
+- **Die adaptive Gradregel hilft relativ gerechnet am deutlichsten im Ring und in Verbünden** (je etwa 17 %: Ring 5,1 % gegen 6,2 %, Verbünde 4,3 % gegen 5,2 %), im Gitter 12 % (9,1 % gegen 10,3 %), kaum in Netzen mit schwankendem Grad (0 bis 5 %).
+- **Die Ausbruchsgröße fällt nicht immer mit jeder Impfung** (Korrektur am Plan, der „Impfen schadet nie“ als Eigenschaft vorsah): der Befall beginnt in einem zufälligen **Ungeimpften**; wer einen isolierten Betrieb sichert, ändert die Summe der quadrierten Komponentengrößen nur um 1, nimmt aber einen Startbetrieb mit kleinster Reichweite aus dem Mittel (der Nenner, die Zahl der Ungeimpften, sinkt um 1). Die Summe selbst fällt immer.
+- **Greedy nur exakt und klein:** auf Netzen mit 9 Betrieben liegt Greedy im Mittel beim Optimum (Optimum in 9 bzw. 8 von 10 Netzen, im schlechtesten Netz bei k = 3 bis zu 14 % darüber), die Gradregel 1,5 % bzw. 9,1 % darüber (Median); live ist Greedy zu teuer.
 
 ## Modell
 
@@ -48,7 +48,7 @@ Alle Zahlen stehen in `tests/test_claims.py`. Netze der Messreihen: die acht fes
 | **Wo lohnt Wissen?** | siehe Tabelle zu Experiment 1: bei schwankendem Grad (Potenzgesetz, skalenfrei) liegen Grad, adaptiver Grad, Betweenness und die Hub-Variante der Bekannten-Impfung bei 0,7 bis 1,8 %, Zufall bei 22,5 und 20,8 %; im Gitter liegen alle Strategien zwischen 9,1 % und 15,0 % |
 | **Gibt es einen Impfanteil, der den Ausbruch eindämmt?** | siehe Tabelle zu Experiment 2: bei schwankendem Grad genügen mit der Gradregel 2,4 % (Potenzgesetz) bzw. 3,6 % (skalenfrei), mit Zufall sind es im Potenzgesetz-Netz **mehr als 40 %** (der Median der acht Netze erreicht die 5 % bis dahin nicht); im Gitter braucht selbst die beste Strategie (adaptiver Grad) 16,0 %, Zufall 22,7 % |
 | **Reicht Nachbarwissen?** | siehe Tabelle zu Experiment 3 |
-| **Bleibt die beste Strategie bei anderer Ausbreitungsstärke die beste?** | Ja: in allen vier geprüften Netztypen (skalenfrei, Zufallsnetz, Ring, Gitter) ist bei 10, 30 und 60 % der adaptive Grad am besten; die Betweenness bleibt im Gitter bei jeder Stärke schlechter als Zufall (Tabelle zu Experiment 4) |
+| **Bleibt die beste Strategie bei anderer Ausbreitungsstärke die beste?** | Ja: in allen vier geprüften Netztypen (skalenfrei, Zufallsnetz, Ring, Gitter) liegt bei 10, 30 und 60 % der adaptive Grad vorn (in Netzen mit schwankendem Grad gleichauf mit Grad und Betweenness); die Betweenness bleibt im Gitter bei jeder Stärke schlechter als Zufall (Tabelle zu Experiment 4) |
 | **Wie weit sind Greedy und Grad vom Optimum?** (kleine Netze, exakt) | siehe Tabelle zu Experiment 5 |
 | **Standardnetz** (Zufallsnetz, *n* = 150, *c* = 6, Seed 35, Ausbreitungsstärke 30 %, 10 % Impfanteil, Zufall) | 450 Kanten, *p* = 0,246; ohne Impfung 30,8 %, mit 15 zufällig gesicherten Betrieben 17,9 %; Grad 9,0 %, die beste Strategie ist der adaptive Grad |
 | **Preset Superspreader** (skalenfrei, *n* = 150, Grad) | 444 Kanten, *p* = 0,239; ohne Impfung 30,5 %, Grad **2,1 %** gegen Zufall 19,5 %; 150 Abfragen |
@@ -134,7 +134,7 @@ Alle Zahlen stehen in `tests/test_claims.py`. Netze der Messreihen: die acht fes
 | H5 | Die Kernzahl ist als Impfregel schwach (Stück 1 und 5) | ✅ skalenfrei 20,1 % gegen 20,8 % (Zufall); im Potenzgesetz-Netz brauchbar (1,1 %) |
 | H6 | Greedy liegt nahe am Optimum, die Gradregel darüber | ✅ auf kleinen exakten Netzen: *k* = 2 Optimum 20,8 %, Greedy 20,8 %, Grad 21,9 %; *k* = 3 15,3 %, 15,6 %, 16,9 % (nur ein Beleg für die Rechnung, nicht für große Netze) |
 | H7 | Die adaptive Gradregel schlägt die statische nur schwach | ✅ in Netzen mit schwankendem Grad kaum (1,0 % gegen 1,1 %), im Ring (5,1 % gegen 6,2 %) und im Gitter (9,1 % gegen 10,3 %) deutlicher |
-| H8 | Der Vorteil hängt von der Ausbreitungsstärke ab | ⚠ die beste Strategie bleibt der adaptive Grad (vier Netztypen, 10, 30 und 60 %), die Betweenness im Gitter bei jeder Stärke schlechter als Zufall; die absolute Lücke zu Zufall wächst im Zufallsnetz mit der Stärke (bei 10 %: 5,2 gegen 2,2 %; bei 60 %: 44,6 gegen 25,4 %) |
+| H8 | Der Vorteil hängt von der Ausbreitungsstärke ab | ⚠ der adaptive Grad liegt vorn (vier Netztypen, 10, 30 und 60 %; in Netzen mit schwankendem Grad gleichauf mit Grad und Betweenness), die Betweenness im Gitter bei jeder Stärke schlechter als Zufall; die absolute Lücke zu Zufall wächst im Zufallsnetz mit der Stärke (bei 10 %: 5,2 gegen 2,2 %; bei 60 %: 44,6 gegen 25,4 %) |
 
 ## Ehrliche Grenzen
 
